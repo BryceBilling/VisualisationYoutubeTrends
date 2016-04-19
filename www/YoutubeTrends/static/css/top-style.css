@@ -1,0 +1,172 @@
+#righttop, #righttop_right {
+    float: right;
+    padding-right: 50px
+}
+
+#lefttop, #lefttop_right, #righttop, #righttop_right {
+    width: 40%;
+    padding-top: 0
+}
+
+#Top_Container, #box, #box_right {
+    display: block;
+    margin: 0;
+    width: 100%
+}
+
+#Heading, #pop {
+    text-align: center
+}
+
+#Top_Container {
+    z-index: 999;
+    height: 565px
+}
+
+#Container_Top_Left {
+    float: left;
+    display: block;
+    margin: 15px 0 0 15px;
+    width: 48%;
+    padding-bottom: 0
+}
+
+#middletop, #middletop_right {
+    float: left;
+    display: block;
+    margin: 0;
+    padding-left: 0;
+    width: 20%
+}
+
+#righttop {
+    display: block;
+    margin: 0
+}
+
+#lefttop {
+    float: left;
+    display: block;
+    margin: 0;
+    padding-left: 0
+}
+
+#Container_Top_Right {
+    float: right;
+    margin-right: 15px;
+    display: block;
+    width: 48%;
+    margin-top: 15px;
+    padding-bottom: 0
+}
+
+#righttop_right {
+    display: block;
+    margin: 0
+}
+
+#lefttop_right {
+    float: left;
+    display: block;
+    margin: 0;
+    padding-left: 0;
+    height: 40px
+}
+
+#WritingGoogle, #WritingGoogle_right {
+    display: block;
+    padding-top: 0px
+}
+
+#WritingYoutube, #WritingYoutube_right {
+    display: block;
+    padding-top: 0
+}
+
+#box, #box_right {
+    float: left;
+    padding: 0;
+    height: 300px
+}
+
+#Heading {
+    font-size: 60px;
+    margin-top: 0
+}
+
+.form-control {
+    cursor: pointer;
+    width: 103% !important;
+    height: 40px !important
+}
+
+#topbar, #topbar_right {
+    width: 48%;
+    position: absolute
+}
+
+#vislink {
+    display: inline-block;
+    position: absolute;
+    right: 15px
+}
+
+#Name, #NameGoogle, #NameGoogle_right, #Name_right {
+    margin-left: 30px
+}
+
+#topbar_right {
+    right: 15px
+}
+
+.Wrap {
+    display: inline-block;
+    width: 200px;
+    word-wrap: break-word
+}
+
+.Label {
+    font-family: "Times New Roman", Georgia, Serif;
+    font-size: 18px;
+    color: #000
+}
+
+.stick {
+    width: 50%;
+    position: fixed;
+    top: 0
+}
+
+.vstick {
+    display: inline-block;
+    position: fixed;
+    top: 0
+}
+
+.page-header {
+    margin-top: 20px
+}
+
+.verticalLine {
+    border-left: thick solid red
+}
+
+.right {
+    float: left;
+    margin-left: 20px
+}
+
+.left {
+    float: left;
+    margin-left: 15px
+}
+
+#page-header {
+    margin-top: 5px;
+    margin-right: 15px;
+    margin-left: 15px
+}
+
+#top_bar {
+    height: 75px
+}

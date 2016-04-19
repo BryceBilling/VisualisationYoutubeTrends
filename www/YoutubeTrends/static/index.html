@@ -1,0 +1,413 @@
+<!--
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * -->
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Trends</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css_dependents/roboto_fonts.min.css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/material_icon.min.css">
+    <link rel="stylesheet" href="css_dependents/c3.min.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/lightbox.min.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/ion.rangeSlider.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/ion.rangeSlider.skinHTML5.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/ripples.min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/top-style.css" type="text/css">
+
+    <script src="js_dependents/jquery-2.2.1.min.js"></script>
+    <script src="js_dependents/bootstrap.min.js"></script>
+    <script src="js_dependents/material.min.js"></script>
+    <script src="js_dependents/ripples.min.js"></script>
+
+
+    <style>
+        img {
+            width: 100%;
+        }
+
+        p {
+            margin-left: 30px;
+            font-size: 20px;
+            color: black;
+        }
+
+        h3 {
+            margin-top: 3px;
+            margin-left: 30px;
+            font-size: 25px;
+            color: black;
+        }
+
+        select {
+            margin-left: 30px;
+            font-size: 20px;
+            color: black;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="Top_Container">
+        <div id="page-header" class="page-header well">
+            <h1 id="Heading">Youtube Trends Report</h1>
+
+        </div>
+        <div id="top_bar">
+            <div class="left">
+
+            </div>
+            <div class="right">
+                <div id="vislink" class="well-sm">
+                    <h3 style="text-align:center;padding-right:20px"><a href="visualization.html" target="_blank">Visualization ></a></h3>
+                </div>
+
+            </div>
+        </div>
+        <div style="padding:60px">
+            <h1> Introduction </h1>
+            <p>
+                YouTube is a probably the most popular video-sharing service in the world: 300 hours of video are uploaded every minute (according to their stats). Of those that achieve views in the billions, the great majority are music videos. We wanted to compare
+                how the popularity of the five most watched YouTube videos changed over time, how they spread and how different countries compared to each other. We decided to use data on YouTube searches, comments on the videos and Google searches as
+                a proxy for that popularity.
+            </p>
+            <h3> Data </h3>
+            <p>
+                While all the data we used is easily accessible, there is unfortunately no single place where it is bundled. We used a combination of custom code and
+                 open source libraries <sup><a href="#refs">[6]</a></sup> to download and get the data in a format we could use. This involved querying Google Trends for each song, country and source combination we needed and then
+                parsing the YouTube comments for every video.
+            </p>
+            <h3>Typical User and Input/Output</h3>
+            <p>
+                The visualization is aimed at the average internet user: it aims to be appealing and interesting, to encourage people to explore the data.
+                <br> A user would input the two videos that they are interested in comparing and the visualization will give that user information about those videos on the maps, line graphs and info boxes.
+            </p>
+            <div class="related-work">
+
+                <h1> Related Work </h1>
+                <div class="ripples" style="display:inline-block">
+                    <div style="width: 20%;float:left;padding-right:20px;padding-left:30px">
+                        <div class="well">
+
+                            <a href="img/ripples.png" data-lightbox="image-1" data-title="Google Ripples Overview"><img src="img/ripples-small.png">click to enlarge</a>
+                        </div>
+                    </div>
+                    <div style="width: 80%;float:right">
+                        <p>
+                            The first visualization we looked at was the Google+ ripples visualization<sup><a href="#refs">[1]</a></sup> as it shows how posts are shared and spread through the Google+ community. We identified several issues with this visualization: it uses a 2D object i.e. the circles to represent 1D data i.e the number of shares, the hierarchical structure used to show shares of shares
+                            by putting the sharers circles inside the original posts circle causes the posts lower down the hierarchy to be obstructed and some of the colours used are very similar to one another making it hard to distinguish between them.
+                        </p>
+                    </div>
+                </div>
+                <div class="topgear" style="display:inline-block">
+                    <div style="width: 20%;float:right;padding-left:20px">
+                        <div class="well">
+
+                            <a href="img/topgear.png" data-lightbox="image-2" data-title="Top Gear Youtube stats Visualization"><img src="img/topgear.png">click to enlarge
+                            </a>
+                        </div>
+                    </div>
+                    <div style="width: 80%;float:left">
+                        <p>
+                            Next we looked at the visualizing of YouTube channel information, specifically Top Gear's channel<sup><a href="#refs">[2]</a></sup>. We liked the use of the line graph to show the overall popularity of each of the videos, as
+                            it gives a good overview of the initial trend. The ability to zoom into a specific range was also incorporated into our final visualization. Finally, the popup when hovering over a specific part of the line graph helps to give more in depth information. This feature was also used in the final visualization.
+                        </p>
+                    </div>
+                </div>
+                <div class="stats" style="display:inline-block">
+                    <div style="width: 20%;float:left;padding-right:20px;padding-left:30px">
+                        <div class="well">
+
+                            <a href="img/stats.png" data-lightbox="image-3" data-title="Stat World Visualization"><img src="img/stats.png">click to enlarge</a>
+                        </div>
+                    </div>
+                    <div style="width: 80%;float:right">
+                        <p>
+                            The stat world visualization on the statsilk website <sup><a href="#refs">[3]</a></sup> is the closest visualization we could find to what we wanted, though showed unrelated data. The use of the map to show the overall world wide data, as well as having
+                            the line graph to show the trends changing over time is very similar to what we did in our final design. The grey to red colour scheme was also very appealing as it allows for easy comparison between the different regions and creates a clear
+                            boundary between each country.
+                        </p>
+                    </div>
+                </div>
+                <div class="drug" style="display:inline-block">
+                    <div style="width: 20%;float:right;padding-left:20px">
+                        <div class="well">
+
+                            <a href="img/drug.jpg" data-lightbox="drug" data-title="Drug Searches in the US"><img src="img/drug.jpg">click to enlarge</a>
+                        </div>
+                    </div>
+                    <div style="width: 80%;float:left">
+                        <p>
+                            We also looked at a visualization showing the drug-specific search prevalence in the US <sup><a href="#refs">[4]</a></sup>, which shows the  popularity of search terms, similar to what we are looking at. The multiple line graphs allow for easy comparison between the different types of drugs. The problem with this visualization is that the lines only differ from each other on one channel i.e. they only differ in colour. The use of a unique texture as well for each line would have made it easier to immediately tell the difference between the separate drugs being represented.
+                        </p>
+                    </div>
+                </div>
+                <div class="trends" style="display:inline-block">
+                    <div style="width: 20%;float:left;padding-left:20px;padding-left:30px">
+                        <div class="well">
+
+                            <a href="img/trends.png" data-lightbox="drug" data-title="Google Trends Example"><img src="img/trends-small.png">click to enlarge</a>
+                        </div>
+                    </div>
+                    <div style="width: 80%;float:left">
+                        <p>
+                            Finally, we looked at the way that Google trends visualizes the information for videos <sup><a href="#refs">[5]</a></sup> and again noticed the use of the map to compare regions and a slider to show the progression over time, as well as using line graphs to compare two keywords.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <h1> Visual Queries </h1>
+            <p>
+                <ul style="font-size: 21px;">
+                    <li>How does the (regional and global) popularity of one video compare to the popularity of another video over time / region?</li>
+                    <li>Similarly, how does the (regional and global) popularity of a single video change over time / region?</li>
+                    <li>Which regions pick up on viral content first?</li>
+                    <li>How does activity differ based on Youtube search, Google search and comments posted on the video?</li>
+                </ul>
+            </p>
+
+            <h1>Initial Design</h1>
+            <div class="trends" style="display:inline-block">
+                <div style="width: 45%;float:right;padding-left:30px">
+                    <div class="well">
+                        <a href="img/inital.png" data-lightbox="initial" data-title="Initial mockup"><img src="img/inital.png">click to view</a>
+                    </div>
+                </div>
+                <div style="width: 55%;float:left">
+                    <p>
+                        Our initial design was set up so that two videos could be chosen and compared at the same time. The whole motivation for our design was comparing two separate things hence the reason for splitting the design
+                        down the middle to aid comparison. An overall problem was the fact that the design was not very appealing, which we would have to focus on.
+                    </p>
+                    <p>
+                        At the top of the design was the selector where the two videos the user wants to compare can be chosen by using the drop downs. Then information on the video (title, view count, dislike count, like count, comment count, date published) gets displayed and next to all that the relevant video is embedded. The visualization also incorporated being able to select the type of trend i.e does the user want to see data based on YouTube search volume or Google search volume? This is also
+                        selected using the drop downs next to the video names. The problem with this part of the visualization was the fact that it was quite boring as there was a lot of text and numbers used and no symbols necessitating more reading.
+                    </p>
+                    <p>
+                        Below that are the maps. The maps show, based on the shade of the red, normalised popularity of a video for each country after a specific number of weeks after release of the video. The maps information is linked to a slider
+                        below it that the user can adjust the number the week in question allowing the user to compare the two different videos over a period of 52 weeks after their initial releases and also allowing them to be able to see
+                        the change in popularity for a specific video over a certain amount of time. We chose to do weeks after release rather than the actual time frames due to the fact that some of the videos were released up to 2 years before the others. This is again to aid the comparison of videos. The map also allows for zooming to facilitate easy comparison of smaller countries. It has a tooltip, on hover over of the countries, giving the normalised
+                        popularity value not just for the video the user selected but also for the video they are comparing it to. The comments we got back on this was it was too difficult to tell the difference of popularities between certain ranges as our
+                        colour gradient was too similar.
+                    </p>
+                </div>
+            </div>
+            <p>
+                The final part are the graphs that show the popularity of the selected video over time i.e it will display the number of comments, the number of Google searches and the number of YouTube searches over the 52 week period after the release.
+                The graphs would also allow the user to select the type of data i.e they may want to see only Google trends and then the lines representing this data would stay and the rest of the lines would be greyed out, a merge function was also mentioned
+                that would allow the User to compare the two separate videos in one graph. The graphs also had a vertical black line that is linked to the slider that moved to the week selected, making it easier to relate the data from the map
+                to the graph. The issues that were mentioned with this section was that the greyed out lines were difficult to see and also we only used one colour in the separate graphs making it hard to pick out what represents what exacerbated by the fact that no texture was used.
+            </p>
+
+            <h1>Second Iteration</h1>
+            <div class="secondit" style="display:inline-block">
+                <div style="width: 40%;float:right;padding-left:30px">
+                    <div class="well">
+                        <a href="img/first.png" data-lightbox="first" data-title="First Iteration"><img src="img/first.png">click to view</a>
+                    </div>
+                </div>
+                <div style="width: 60%;float:left">
+                    <p>
+                        The feedback from the initial design was overall positive, with criticism of the looks rather than the format. Our second iteration was mostly implementing our initial mockup to get a better idea of how the parts would interact and look with real data.
+                        <br> The implementation was done with a suite of very awesome open source javascript libraries<sup><a href="#refs">[6]</a></sup>.
+                    </p>
+                    <h3>The Header</h3>
+                    <p>
+                        This consists of two main parts: a selection bar that sticks to the top of the page as the user scrolls down and an info section with stats about the video retrieved from YouTube (and the video itself embedded ). The selection bar has two functions: it
+                        allows the user to always quickly see what they are comparing and it allows the user to change what they are comparing without returning to the top of the page.
+                        <br> We added symbols to the info boxes after feedback from the initial presentation. We went for symbols that were immediately recognizable and, where possible, were similar to those used on YouTube itself. We also used different
+                        fonts and styles for the description vs the text as it made it easier to read.
+                    </p>
+                    <h3>The Maps</h3>
+                    <p>
+                        The maps display the search volume data across the globe, normalized to the range 1-100. In practice this means that for each country, the week with the highest search volume is given a score of 100 and every other week is basically a percentage of that
+                        highest search volume. We feel this is justified as even if we had access to the raw numbers (which we actually don't) they would not be useful for comparing different countries to each other as we'd need to factor in many other
+                        variables (population, percentage with internet access etc).
+                    </p>
+                </div>
+            </div>
+            <p>
+                The maps are zoomable, and the zoom is linked, so they always display the same view allowing for comparisons of smaller areas. The slider beneath the maps allows the user to see how the popularity changes over time, in one week increments from release
+                date (as the videos were released in different years, we are only really interested in the changes relative to when it came out).
+            </p>
+            <p>
+                The colours were chosen through trial and error with the help of the excellent ColourBrewer<sup><a href="#refs">[6]</a></sup>. We ended up choosing a yellow to red scale as it fit well with YouTube's colours but at the same time had enough
+                differences in the five colours to allow the user to distinguish between them even in situations where things were more crowded.
+            </p>
+            <h3>The Graphs</h3>
+            <p>
+                The graphs initially show global trends for the videos for the year after release. Clicking on a specific country on the relative map causes the graph to switch to information about that specific country. The user can also zoom and pan on the
+                graphs, plus hover for more information. The graph makes use of texture, colour and line width to differentiate the data and make it easier to query specific lines. The graph also allows the user to hide information that they are not interested
+                in (by toggling the buttons below the graph).
+            </p>
+            <p>
+                Based on feedback from the initial iteration, the color scale was completely reworked, colours were chosen that were commonly associated with the brand: red for YouTube and blue for Google. Green was chosen for comments since it has a strong opposing
+                contrast to red. To account for colour blindness, the biggest difference on the other channels is between the red and green. The scale uses symbols to allow for faster identification of what the line represents.
+            </p>
+            <p>
+                For an easier and more immediate comparison between the global trends, the graphs can be merged, so that all the data is displayed on a single larger graph. Colour is used to identify what the song is (with each line using a slightly different shade of
+                the colour) and the same texture as used in the individual graphs is used to differentiate Google, YouTube and the comments. This still allows the lines to be rapidly differentiated even on the merged graph. Different colours were chosen
+                for the merge graph since the shade of red and blue on the individual line graph is associated with the Google and YouTube metaphor.
+            </p>
+            <p>
+                Motion is used when the graph is updated to accentuate the changes. It also makes it more clear to the user that the line graph has been updated. However, motion is disabled on Firefox due to performance issues.
+            </p>
+            <h3>Feedback</h3>
+            <p>
+                Feedback was again largely positive, with most of the criticism being directed towards making the visualization look better rather than adding features to it. More specifically we were told to make the separation of components clearer and to generally
+                make it more visually appealing.
+            </p>
+
+            <h1>Final Polish</h1>
+            <div class="secondit" style="display:inline-block">
+                <div style="width: 40%;float:right;padding-left:30px">
+                    <div class="well">
+                        <a href="visualization.html" target="_blank"><img src="img/final.png">click to open</a>
+                    </div>
+                </div>
+                <div style="width: 60%;float:left">
+                    <p>
+                        <br> Having received positive feedback about the overall design of the visualization, we set out to polish it into something more appealing. Some initial small changes were to switch from highlighting the maps in a different colour
+                        to using depth through shading to make it pop and switching out the slider to something more pleasant on the eyes and that showed the range more clearly. We also added help pop-ups on hover that hopefully give the user a better
+                        idea of what is going on without cluttering the visualization.
+                    </p>
+                    <p>
+                        The ability for the merge graph to show the country information was completed. It was still outstanding at the time of the second presentation. A comment was made in the second presentation that it was not clear what the line graphs were showing at a
+                        given time. To resolve this, additional headings and subheadings were added to the line graph and merged line graph to make it explicitly clear what was being compared.
+                    </p>
+                    <p>
+                        Not being UI designers ourselves, we decided that the best way to approach the final modifications was to use well-defined guidelines. Being fans of Google's material design (which is also used extensively on YouTube) we turned to their
+                        <a href="http://www.google.com/design/spec/material-design/introduction.html" target="_blank">design spec</a> for inspiration. The use of cards and depth in particular really makes the visualization much more interesting and more
+                        fun to interact with along with cleaner fonts. The use of depth helps to separate components and make them more prominent, hence more important.
+                    </p>
+                    <p>
+                        We received some feedback in the previous presentation that the symbols could use some colour, but unfortunately every combination we tried looked garish so we opted for the cleaner look. Once we made the background less white and improved the other parts
+                        of the design, we felt that the black symbols fit best.
+                    </p>
+                </div>
+            </div>
+            <h1>Strengths, Weaknesses and Future Work</h1>
+            <p>
+                Thanks to the extensive feedback received during the initial iterations, our visualization has come a long way.
+                <br> Our visual queries are easy to answer, and the more appealing design, coupled with interactions most people will be familiar with (scroll to zoom on map, hover for more info etc) makes it fun to explore the data. It highlights interesting
+                events like Gangnam Style peaking again as it hit one billion views (though work could be done on giving better details on what those events are).
+
+            </p>
+            <p>
+                Our visualization has two major weaknesses: the first, more a matter of time to implement, is the limited number of videos. Farming the data is time consuming so while this could be a cool visualization if plugged directly into Google's databases, anyone
+                else has to choose the videos beforehand rather than allowing the user to choose any video. The second is that it might not be immediately apparent what the user is looking at. The hover for more info help dialogues help, and most users
+                will not feel a need to know specifically what is meant by "more popular" vs "less popular" but some might want more precise details.
+            </p>
+            <p>
+                As mentioned, future work would mainly concentrate on getting more data into the visualization to allow a less rigid comparison of videos.
+            </p>
+            <h1>Conclusion</h1>
+            <p>
+                From our initial, stark, design we iterated until we settled on an appealing, fun to explore visualization, that allows the user to answer all visual queries with ease. With more direct access to the data this would be an even better visualization, allowing
+                users to compare any two videos instead of a subset prepared in advanced, but even with our limited data it is interesting and encourages people to use it.
+            </p>
+            <h1>Division of Labour </h1>
+            <p>
+                Work was divided in the following way:
+                <br>
+            </p>
+            <div class="tablediv" style="padding-left:30px">
+
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th data-field="id">Name</th>
+                            <th data-field="name">Work Done</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Brian Mc George</td>
+                            <td>Line graphs, overall design and visualization styling and polishing (helped extensively with coding other areas)</td>
+                        </tr>
+                        <tr>
+                            <td>Bryce Billing</td>
+                            <td>Header, large portions of the report</td>
+                        </tr>
+                        <tr>
+                            <td>Calvin Brizzi</td>
+                            <td>Maps, report formatting</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>
+                This worked well, though certain parts of the design required more coding than others (the line graphs for example). Overall the team worked well, communication was good and people were quick to respond and resolve issues.
+            </p>
+            <div id="refs">
+                <h1>References</h1>
+                <ol>
+                    <li>
+
+                        Viégas et al.. (2013). Google+ Ripples: A Native Visualization of Information Flow . Google+ Ripples: A Native Visualization of Information Flow , N/A(N/A), 1391.
+                    </li>
+                    <li>
+                        Gauravgargme. (2016). Gauravgargme. Retrieved 20 March, 2016, from <a href="http://youtrends.gauravgarg.me/result?name=top+gear">http://youtrends.gauravgarg.me/result?name=top+gear</a>
+                    </li>
+                    <li>
+
+                        Statsilkcom. (2016). Statsilkcom. Retrieved 20 March, 2016, from <a href="http://www.statsilk.com/maps/world-stats-open-data">http://www.statsilk.com/maps/world-stats-open-data</a>
+                    </li>
+                    <li>
+                        Dailymailcouk. (2015). Mail Online. Retrieved 29 March, 2016, from <a href="http://www.dailymail.co.uk/sciencetech/article-2909675/Magic-mushrooms-Seattle-heroin-Philadelphia-Google-Trends-plots-changing-face-drug-use-US.html">http://www.dailymail.co.uk/</a>
+                    </li>
+                    <li>
+                        Google. (2016). Google. Retrieved 20 March, 2016, from <a href="https://www.google.co.za/trends/">https://www.google.co.za/trends/</a>
+                    </li>
+                    <li> Special thanks to <a href="https://d3js.org/">D3</a>, <a href="http://c3js.org/">C3</a>, <a href="http://ionden.com/a/plugins/ion.rangeSlider/en.html">Range Slider</a>, <a href="http://datamaps.github.io/">Datamaps</a>, <a href="https://jquery.com/">jQuery</a>,
+                        <a href="http://getbootstrap.com/">Bootstrap</a>, <a href="https://github.com/FezVrasta/bootstrap-material-design">Material for Bootstrap</a>, <a href="http://ripplejs.github.io/">ripple.js</a>, <a href="http://lokeshdhakar.com/projects/lightbox2/">Lightbox</a>, <a href="http://colorbrewer2.org/">Colour Brewer 2</a> and <a href="https://github.com/GeneralMills/pytrends">pytrends</a>.
+                    </li>
+                </ol>
+            </div>
+
+            <script>
+                $(document).ready(function() {
+                    var r = $("#vislink");
+                    var posr = r.position();
+                    $(window).scroll(function() {
+                        var windowpos = $(window).scrollTop();
+                        if (windowpos >= posr.top) {
+                            $('#vislink').css({
+                                position: 'fixed'
+                            });
+                            r.addClass("vstick");
+                        } else {
+                            $('#vislink').css({
+                                position: 'absolute'
+                            });
+                            r.removeClass("vstick");
+                        }
+                    });
+                });
+
+                $(function() {
+                    $.material.init();
+                });
+            </script>
+            <script src="js_dependents/lightbox.min.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>

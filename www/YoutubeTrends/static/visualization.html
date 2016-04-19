@@ -1,0 +1,355 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube Trends</title>
+    <link rel="icon" href="img/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css_dependents/roboto_fonts.min.css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/material_icon.min.css">
+    <link rel="stylesheet" href="css_dependents/c3.min.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/ion.rangeSlider.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/ion.rangeSlider.skinHTML5.css" type="text/css">
+    <link rel="stylesheet" href="css_dependents/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/bootstrap-material-design.min.css">
+    <link rel="stylesheet" type="text/css" href="css_dependents/ripples.min.css">
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/top-style.css" type="text/css">
+
+    <script src="js_dependents/jquery-2.2.1.min.js"></script>
+    <script src="js_dependents/bootstrap.min.js"></script>
+    <script src="js_dependents/material.min.js"></script>
+    <script src="js_dependents/ripples.min.js"></script>
+    <script src="js_dependents/d3.min.js" charset="utf-8"></script>
+    <script src="js_dependents/d3-legend.min.js"></script>
+    <script src="js_dependents/topojson.min.js"></script>
+    <script src="js_dependents/datamaps.world.js"></script>
+    <script src="js_dependents/c3.min.js"></script>
+    <script src="js_dependents/ion.rangeSlider.min.js"></script>
+    <script src="js/line-graph.js"></script>
+    <script type="text/javascript" src="data/all.json"></script>
+
+
+    <style>
+        img {
+            width: 100%;
+        }
+
+        p {
+            margin-left: 30px;
+            font-size: 20px;
+            color: black;
+
+        }
+
+        h3 {
+            margin-top: 3px;
+            margin-left: 30px;
+            font-size: 25px;
+            color: black;
+        }
+
+        select {
+            margin-left: 30px;
+            font-size: 20px;
+            color: black;
+        }
+
+        #maps {
+            width: 100%;
+            height: 21vw;
+        }
+
+        #leftmap {
+            margin-left: 15px;
+            padding: 0;
+            float: left;
+            width: 48%;
+            height: 20vw;
+            /*border: 1px solid grey;*/
+            overflow: hidden;
+        }
+
+        #rightmap {
+            padding: 0;
+            float: right;
+            margin-right: 15px;
+            width: 48%;
+            height: 20vw;
+            /*border: 1px solid grey;*/
+            overflow: hidden;
+        }
+
+        g.datamaps-subunits {
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+<body onload="changeVariable('', true);changeVariableRight()">
+<div id="Top_Container">
+    <div id="page-header" class="page-header well">
+        <h1 id="Heading">Youtube Trends</h1>
+    </div>
+    <div id="top_bar">
+        <div class="left">
+            <div id="topbar" class="well-sm">
+                <div id="lefttop" class="col-xs-5 selectContainer">
+                    <select id="file_type" class="form-control" name="file_type" onchange="changeVariable('', true)">
+                        <option value="GangnamStyle">Gangnam Style</option>
+                        <option value="BlankSpace">Blank Space</option>
+                        <option value="SeeYouAgain">See You Again</option>
+                        <option value="UptownFunk">Uptown Funk</option>
+                    </select>
+                </div>
+
+                <div id=middletop>
+                    <img src="img/Youtube.png" alt="Symbol" id="Symbol" style="float:right;width:60px;height:40px;">
+                </div>
+                <div id="righttop" class="col-xs-5 selectContainer">
+                    <select id="trend_type" class="form-control" name="trend_type" onchange="changeVariable('', false)" style="float:right">
+                        <option value="Youtube">Youtube Trends</option>
+                        <option value="Google">Google Trends</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="right">
+            <div id="topbar_right" class="well-sm">
+                <div id="lefttop_right" class="col-xs-5 selectContainer">
+                    <select id="file_type_right" class="form-control" name="file_type" onchange="changeVariable('_right', true)">
+                        <option value="GangnamStyle">Gangnam Style</option>
+                        <option selected="selected" value="BlankSpace">Blank Space</option>
+                        <option value="SeeYouAgain">See You Again</option>
+                        <option value="UptownFunk">Uptown Funk</option>
+                    </select>
+                </div>
+                <div id=middletop_right>
+                    <img src="img/Youtube.png" alt="Symbol" id="Symbol_right" style="float:right;width:60px;height:40px;">
+                </div>
+                <div id="righttop_right" class="col-xs-5 selectContainer">
+                    <select id="trend_type_right" class="form-control" name="trend_type" onchange="changeVariable('_right', false)" style="float:right">
+                        <option value="Youtube">Youtube Trends</option>
+                        <option value="Google">Google Trends</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="Container_Top_Left" class="well">
+
+        <div id="box">
+            <div id="pic">
+                <!-- <img id="Icon" src="img/icon.png" alt="Icon" style="float:right;width:270px;height:180px;"> -->
+                <iframe id="Icon" alt="Icon" style="float:right;width:270px;height:180px;"
+                        src="">
+                </iframe>
+            </div>
+            <div id="WritingYoutube">
+                <h2 style="margin-top: 0px;"><span id="Name"</span></h2>
+
+                <p>
+                    <img src="img/mic.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Wrap"><span class="Label">Artist:</span><span id="Artist"></span></span>
+                </p>
+                <p>
+                    <img src="img/like.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Label">Likes:</span><span id="Likes"></span>
+                </p>
+                <p>
+                    <img src="img/dislike.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Label">Dislikes:</span><span id="Dislikes"></span>
+                </p>
+                <p>
+                    <img src="img/eye.png" alt="Like" style="float:left;width:20px;height:25px;">
+                    <span class="Label">Views:</span><span id="Views"></span>
+                </p>
+                <p>
+                    <img src="img/comment-icon-black.png" alt="Like" style="float:left;width:20px;height:25px;">
+                    <span class="Label">Comments:</span><span id="Comments"></span>
+                </p>
+                <p>
+                    <img src="img/calendar.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Label">Date Published:</span><span id="Date"></span>
+                </p>
+            </div>
+            <div id="WritingGoogle">
+                <h2 style="margin-top: 0px;"><span id="NameGoogle"></span></h2>
+                <p>
+                    <img src="img/mic.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Wrap"><span class="Label">Artist:</span><span id="ArtistGoogle"></span></span>
+                </p>
+                <p>
+                    <img src="img/hits.png" alt="Like" style="float:left;width:20px;height:25px;">
+                    <span class="Label">Search Results:</span>~<span id="ViewGoogle"></span>
+                </p>
+                <p>
+                    <img src="img/calendar.png" alt="Like" style="float:left;width:20px;height:20px;">
+                    <span class="Label">Released:</span><span id="DatePub"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="verticalLine"></div>
+    <div id="Container_Top_Right" class="well">
+        <div id="box_right">
+            <div id="pic_right">
+                <!-- <img id="Icon_right" src="img/icon.png" alt="Icon" style="float:right;width:270px;height:180px;"> -->
+                <iframe id="Icon_right" alt="Icon" style="float:right;width:270px;height:180px;"
+                        src="">
+                </iframe>
+
+                <div id="WritingYoutube_right">
+                    <h2 style="margin-top: 0px;"><span id="Name_right"></span></h2>
+                    <p>
+                        <img src="img/mic.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Wrap"><span class="Label">Artist:</span><span id="Artist_right"></span></span>
+                    </p>
+                    <p>
+                        <img src="img/like.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Label">Likes:</span><span id="Likes_right"></span>
+                    </p>
+                    <p>
+                        <img src="img/dislike.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Label">Dislikes:</span><span id="Dislikes_right"></span>
+                    </p>
+                    <p>
+                        <img src="img/eye.png" alt="Like" style="float:left;width:20px;height:25px;">
+                        <span class="Label">Views:</span><span id="Views_right"></span>
+                    </p>
+                    <p>
+                        <img src="img/comment-icon-black.png" alt="Like" style="float:left;width:20px;height:25px;">
+                        <span class="Label">Comments:</span><span id="Comments_right"></span>
+                    </p>
+                    <p>
+                        <img src="img/calendar.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Label">Date Published:</span><span id="Date_right"></span>
+                    </p>
+                </div>
+                <div id="WritingGoogle_right">
+                    <h2 style="margin-top: 0px;"><span id="NameGoogle_right"></span></h2>
+                    <p>
+                        <img src="img/mic.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Wrap"><span class="Label">Artist:</span><span id="ArtistGoogle_right"></span></span>
+                    </p>
+                    <p>
+                        <img src="img/hits.png" alt="Like" style="float:left;width:20px;height:25px;">
+                        <span class="Label">Search Results:</span>~<span id="ViewGoogle_right"></span>
+                    </p>
+                    <p>
+                        <img src="img/calendar.png" alt="Like" style="float:left;width:20px;height:20px;">
+                        <span class="Label">Released:</span><span id="DatePub_right"></span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="pop">
+
+    <h2>Popularity by Region
+        <a tabindex="0" class="help_button btn btn-sm btn-default" role="button" data-toggle="popover" data-trigger="focus"
+           data-content="The map and line graphs are zoomable using scroll<br/><br/>Click on a country to show its data on the line graph">
+            <i class="material-icons help_icon">help_outline</i></a></h2>
+    <h4>
+        Search volume normalized between 1-100
+        <a tabindex="0" class="help_button btn btn-sm btn-default" role="button" data-toggle="popover" data-trigger="focus"
+           data-content="For each country, the week with the most searches is given a score of 100, every other week normalised with respect to that">
+            <i id="normalise_popup" class="material-icons help_icon">help_outline</i></a>
+    </h4>
+    <svg id="legendsvg" style="width:40%;height:10%;display:block;margin:0 auto;"></svg>
+</div>
+<div id='maps'>
+    <div id='leftmap' class="well"></div>
+    <div id='rightmap' class="well"></div>
+</div>
+<div id='slider_container' class='container'>
+    <h3 id="week_slider_header" class="output">Week 1 from release</h3>
+    <input type="text" id="slider" name="slider" value=""/>
+</div>
+<div id="line_graphs">
+    <div id='merge_button'>
+        <a href="javascript:mergeClick()" id="merge" class="btn btn-raised btn-default">Merge graphs
+            <div class="ripple-container"></div>
+        </a>
+        <a href="javascript:resetGraphs()" id="reset" class="btn btn-raised btn-default">Reset Graphs
+            <div class="ripple-container"></div>
+        </a>
+    </div>
+    <div id='left_container' class='container left_container well'>
+        <h2 id="line_graph_1_header" class="line_graph_header">Global Trends</h2>
+        <h2 class="line_graph_header">
+            <small id="line_graph_1_subheader">Gangnam Style</small>
+        </h2>
+        <div id="line_graph_1" class="graph"></div>
+        <div id="line_graph_1_legend" class="line_graph_legend"></div>
+    </div>
+    <div id='right_container' class='container right_container well'>
+        <h2 id="line_graph_2_header" class="line_graph_header">Global Trends</h2>
+        <h2 class="line_graph_header">
+            <small id="line_graph_2_subheader">Blank Space</small>
+        </h2>
+        <div id="line_graph_2" class="graph"></div>
+        <div id="line_graph_2_legend" class="line_graph_legend"></div>
+    </div>
+    <div id="merge_container" class="well">
+        <h2 class="line_graph_header" id="line_graph_merged_header">Merged Popularity Trends</h2>
+        <h2 class="line_graph_header">
+            <small id="line_graph_merge_subheader">Gangnam Style Global vs Blank Space Global</small>
+        </h2>
+
+
+        <div id="line_graph_merged" class="graph"></div>
+        <div id="line_graph_merged_legend" class="line_graph_legend"></div>
+    </div>
+</div>
+<script>
+
+    $(document).ready(function () {
+        var l = $("#topbar");
+        var r = $("#topbar_right");
+        var posl = l.position();
+        var posr = r.position();
+        $(window).scroll(function () {
+            var windowpos = $(window).scrollTop();
+            if (windowpos >= posl.top && windowpos >= posr.top) {
+                $('#topbar').css({position: 'fixed'});
+                $('#topbar_right').css({position: 'fixed'});
+                r.addClass("stick");
+                l.addClass("stick");
+            } else {
+                $('#topbar').css({position: 'absolute'});
+                $('#topbar_right').css({position: 'absolute'});
+                r.removeClass("stick");
+                l.removeClass("stick");
+            }
+        });
+    });
+    $("#slider").ionRangeSlider({
+        grid: true,
+        min: 1,
+        max: 52,
+        step: 1,
+        grid_num: 1,
+        onChange: function (data) {
+            var from = data.from;
+            $(".output").text("Week " + from + " from release");
+            setWeek(from);
+
+        },
+        onFinish: function (data) {
+            setAxisGrid(data.from);
+        }
+    });
+
+    $(function () {
+        $('[data-toggle="popover"]').popover({html: true});
+    });
+    $(function () {
+        $.material.init();
+    });
+</script>
+</body>
+<script src="js/left-top.js"></script>
+<script src="js/right-top.js"></script>
+<script src="js/maps.js"></script>
+</html>
